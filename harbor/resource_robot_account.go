@@ -51,6 +51,12 @@ func resourceRobotAccount() *schema.Resource {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},
+			"expires_at": {
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  -1,
+				ForceNew: true,
+			},
 		},
 		Create: resourceRobotAccountCreate,
 		Read:   resourceRobotAccountRead,
@@ -115,6 +121,7 @@ func resourceRobotAccountCreate(d *schema.ResourceData, m interface{}) error {
 		Name:        name,
 		Description: d.Get("description").(string),
 		Access:      robotAccountAccess,
+		ExpiresAt:   int64(d.Get("expires_at").(int)),
 	}
 
 	params := products.NewPostProjectsProjectIDRobotsParams().WithProjectID(projectid).WithRobot(robotCreate)
@@ -195,6 +202,10 @@ func setRobotSchema(d *schema.ResourceData, model *models.RobotAccount) error {
 	}
 
 	if err := d.Set("description", model.Description); err != nil {
+		return err
+	}
+
+	if err := d.Set("expires_at", model.ExpiresAt); err != nil {
 		return err
 	}
 
