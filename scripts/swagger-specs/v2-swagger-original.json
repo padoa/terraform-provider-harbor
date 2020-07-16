@@ -5375,6 +5375,10 @@
     "ConfigurationsResponse": {
       "type": "object",
       "properties": {
+        "oidc_auto_onboard": {
+          "description": "Automatically onboard users bypassing username creation at first login.",
+          "$ref": "#/definitions/BoolConfigItem"
+        },
         "oidc_verify_cert": {
           "description": "Whether verify your OIDC server certificate, disable it if your OIDC server is hosted via self-hosted certificate.",
           "$ref": "#/definitions/BoolConfigItem"
@@ -5397,6 +5401,10 @@
         },
         "oidc_scope": {
           "description": "The scope sent to OIDC server during authentication, should be separated by comma. It has to contain \u201copenid\u201d, and \u201coffline_access\u201d. If you are using google, please remove \u201coffline_access\u201d from this field.",
+          "$ref": "#/definitions/StringConfigItem"
+        },
+        "oidc_user_claim": {
+          "description": "The claim to use for username if automatic onboarding is enabled.",
           "$ref": "#/definitions/StringConfigItem"
         },
         "ldap_search_dn": {
@@ -5468,6 +5476,10 @@
         },
         "oidc_client_id": {
           "description": "The client id of the OIDC.",
+          "$ref": "#/definitions/StringConfigItem"
+        },
+        "oidc_groups_claim": {
+          "description": "The client Scope Claim of the OIDC.",
           "$ref": "#/definitions/StringConfigItem"
         },
         "ldap_group_base_dn": {
@@ -7561,6 +7573,10 @@
     "Configurations": {
       "type": "object",
       "properties": {
+        "oidc_auto_onboard": {
+          "type": "boolean",
+          "description": "Automatically onboard users bypassing username creation at first login."
+        },
         "oidc_verify_cert": {
           "type": "boolean",
           "description": "Whether verify your OIDC server certificate, disable it if your OIDC server is hosted via self-hosted certificate."
@@ -7676,6 +7692,10 @@
           "type": "string",
           "description": "The username for authenticate against SMTP server."
         },
+        "email_password": {
+          "type": "string",
+          "description": "The password for authenticate against SMTP server."
+        },
         "oidc_endpoint": {
           "type": "string",
           "description": "The URL of an OIDC-complaint server, must start with 'https://'."
@@ -7683,6 +7703,14 @@
         "oidc_client_secret": {
           "type": "string",
           "description": "The client secret of the OIDC."
+        },
+        "oidc_groups_claim": {
+          "description": "The client Scope Claim of the OIDC.",
+          "type": "string"
+        },
+        "oidc_user_claim": {
+          "type": "string",
+          "description": "The claim to use for username if automatic onboarding is enabled."
         },
         "ldap_scope": {
           "type": "integer",

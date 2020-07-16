@@ -41,3 +41,8 @@ The following arguments are supported:
 * **oidc_scope** - (Optional) The scope sent to OIDC server during authentication. It has to contain “openid”. (Required - if auth_mode set to **oidc_auth**)
 
 * **oidc_verify_cert** - (Optional) Set to **"false"** if your OIDC server is using a self-signed certificate. (Required - if auth_mode set to **oidc_auth**)
+
+* **oidc_auto_onboard** - (Optional) Enable automatic onboarding (no need to choose a login name at very first login).
+
+* **oidc_user_claim** - (Optional) The name of the claim in the token whose value is the username when automatic onboarding is enabled.
+

@@ -47,6 +47,16 @@ func resourceConfigAuth() *schema.Resource {
 				Type:     schema.TypeBool,
 				Optional: true,
 			},
+			"oidc_auto_onboard": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
+			"oidc_user_claim": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "",
+			},
 		},
 		Create: resourceConfigAuthUpdate,
 		Read:   resourceConfigAuthRead,
@@ -93,6 +103,14 @@ func resourceConfigAuthRead(d *schema.ResourceData, m interface{}) error {
 		return err
 	}
 
+	if err := d.Set("oidc_auto_onboard", resp.Payload.OidcAutoOnboard.Value); err != nil {
+		return err
+	}
+
+	if err := d.Set("oidc_user_claim", resp.Payload.OidcUserClaim.Value); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -125,6 +143,8 @@ func newAPIClient(d *schema.ResourceData, m interface{}) (*client.Harbor, models
 		OidcGroupsClaim:  d.Get("oidc_groups_claim").(string),
 		OidcScope:        d.Get("oidc_scope").(string),
 		OidcVerifyCert:   d.Get("oidc_verify_cert").(bool),
+		OidcAutoOnboard:  d.Get("oidc_auto_onboard").(bool),
+		OidcUserClaim:    d.Get("oidc_user_claim").(string),
 	}
 
 	return apiClient, body
