@@ -38,6 +38,9 @@ test: goLint scriptsLint vet
 fmtcheck:
 	scripts/build-03-go-gofmtcheck.sh
 
+errcheck:
+	scripts/build-04-go-errorchecks.sh
+
 vet:
 	echo "==> Checking code with vet..."
 	go vet ./...
