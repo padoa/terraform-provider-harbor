@@ -36,6 +36,8 @@ func TestAccHarborRobot_Basic(t *testing.T) {
 						"harbor_robot_account.master_robot", "name", "acc-robot-test"),
 					resource.TestCheckResourceAttr(
 						"harbor_robot_account.master_robot", "description", "Robot account used created by gloang acc"),
+					resource.TestCheckResourceAttr(
+						"harbor_robot_account.master_robot", "expires_at", "-1"),
 					testAccHarborCheckRobotHasGeneratedTokenExists(
 						"harbor_robot_account.master_robot"),
 				),
