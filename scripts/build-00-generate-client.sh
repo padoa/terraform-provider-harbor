@@ -29,7 +29,8 @@ fi
 mkdir -p "${projectBase}/gen"
 
 # shellcheck disable=SC2002
-cat "${projectBase}/scripts/swagger-specs/v2-swagger-original.json" | json-patch -p "${projectBase}/scripts/swagger-specs/patch.1.json" > "${GENERATED_MERGED_SWAGGER}"
+cat "${projectBase}/scripts/swagger-specs/v2-swagger-original.json" | json-patch -p "${projectBase}/scripts/swagger-specs/patch.1.json" | \
+	json-patch -p "${projectBase}/scripts/swagger-specs/patch.2.auto-onboard.json" > "${GENERATED_MERGED_SWAGGER}"
 
 
 mkdir -p "${GENERATED_SOURCES_TARGET}"
