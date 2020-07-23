@@ -1,0 +1,34 @@
+[
+ {
+  "op": "add",
+  "path": "/definitions/ConfigurationsResponse/properties/oidc_auto_onboard",
+  "value": {
+   "description": "Automatically onboard users bypassing username creation at first login.",
+   "$ref": "#/definitions/BoolConfigItem"
+  }
+ },
+ {
+  "op": "add",
+  "path": "/definitions/ConfigurationsResponse/properties/oidc_user_claim",
+  "value": {
+   "description": "The claim to use for username if automatic onboarding is enabled.",
+   "$ref": "#/definitions/StringConfigItem"
+  }
+ },
+ {
+  "op": "add",
+  "path": "/definitions/Configurations/properties/oidc_user_claim",
+  "value": {
+   "type": "string",
+   "description": "The claim to use for username if automatic onboarding is enabled."
+  }
+ },
+ {
+  "op": "add",
+  "path": "/definitions/Configurations/properties/oidc_auto_onboard",
+  "value": {
+   "type": "boolean",
+   "description": "Automatically onboard users bypassing username creation at first login."
+  }
+ }
+]
