@@ -12,6 +12,7 @@ resource "harbor_robot_account" "master_robot" {
   description = "Robot account used to push images to harbor"
   project_id  = harbor_project.main.id
   actions     = ["docker_read", "docker_write", "helm_read", "helm_write"]
+  expires_at  = 1643840542
 }
 
 output "harbor_robot_account_token" {
@@ -30,6 +31,8 @@ The following arguments are supported:
 * `project_id` - (Required) The project id of the project that the robot account will be associated with.
 
 * `actions` - (Optional)
+
+* `expires_at` - (Optional) Robot account expirations for Harbor v2 as epoch. Defaults to -1 (no expiration).
 
 ## Attributes Reference
 
