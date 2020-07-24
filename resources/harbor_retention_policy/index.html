@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="https://nolte.github.io/terraform-provider-harbor/resources/harbor_retention_policy/">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>harbor_retention_policy - Terraform Provider: Harbor</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../../css/table.css" rel="stylesheet" />
+  <link href="../../css/extras.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "harbor_retention_policy";
+    var mkdocs_page_input_path = "resources/harbor_retention_policy.md";
+    var mkdocs_page_url = "/terraform-provider-harbor/resources/harbor_retention_policy/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Terraform Provider: Harbor</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Getting Started</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Data Sources</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../data_sources/harbor_label/">harbor_label</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../data_sources/harbor_project/">harbor_project</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../data_sources/harbor_registry/">harbor_registry</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Resources</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../harbor_config_system/">harbor_config_system</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../harbor_configuration/">harbor_configuration</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../harbor_label/">harbor_label</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../harbor_project_member/">harbor_project_member</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../harbor_project/">harbor_project</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../harbor_registry/">harbor_registry</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../harbor_replication/">harbor_replication</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">harbor_retention_policy</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#example-usage">Example Usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#argument-reference">Argument Reference</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#nested-blocks">Nested Blocks</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#scope">scope</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#arguments">Arguments</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rule">rule</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#arguments_1">Arguments</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#attributes">Attributes</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tag_selectors">tag_selectors</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#arguments_2">Arguments</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#scope_selectors">scope_selectors</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#arguments_3">Arguments</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#trigger">trigger</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#arguments_4">Arguments</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#attributes_1">Attributes</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#settings">settings</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#arguments_5">Arguments</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#references">references</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#attributes_2">Attributes</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#attributes-reference">Attributes Reference</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#import">Import</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../harbor_robot_account/">harbor_robot_account</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../harbor_tasks/">harbor_tasks</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../harbor_usergroup/">harbor_usergroup</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Guides</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../guides/development/">Development</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../guides/kind/">Local E2E Tests</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Terraform Provider: Harbor</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Resources &raquo;</li>
+        
+      
+    
+    <li>harbor_retention_policy</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/nolte/terraform-provider-harbor/edit/master/docs/resources/harbor_retention_policy.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="resource-harbor_retention_policy">Resource: harbor_retention_policy<a class="headerlink" href="#resource-harbor_retention_policy" title="Permanent link">&para;</a></h1>
+<p>Harbor official documentation feature reference: <a href="https://goharbor.io/docs/2.0.0/working-with-projects/working-with-images/create-tag-retention-rules/">https://goharbor.io/docs/2.0.0/working-with-projects/working-with-images/create-tag-retention-rules/</a></p>
+<h2 id="example-usage">Example Usage<a class="headerlink" href="#example-usage" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>resource &quot;harbor_project&quot; &quot;main&quot; {
+    name = &quot;main&quot;
+}
+
+resource &quot;harbor_retention_policy&quot; &quot;cleanup&quot; {
+    scope {
+        ref = harbor_project.main.id
+    }
+
+    rule {
+        template = &quot;always&quot;
+        tag_selectors {
+            decoration = &quot;matches&quot;
+            pattern    = &quot;master&quot;
+            extras     = jsonencode({
+                untagged: false
+            })
+        }
+        scope_selectors {
+            repository {
+                kind       = &quot;doublestar&quot;
+                decoration = &quot;repoMatches&quot;
+                pattern    = &quot;**&quot;
+            }
+        }
+    }
+
+    rule {
+        disabled = true
+        template = &quot;latestPulledN&quot;
+        params = {
+            &quot;latestPulledN&quot;      = 15
+            &quot;nDaysSinceLastPush&quot; = 7
+        }
+        tag_selectors {
+            kind       = &quot;doublestar&quot;
+            decoration = &quot;excludes&quot;
+            pattern    = &quot;master&quot;
+            extras     = jsonencode({
+                untagged: false
+            })
+        }
+        scope_selectors {
+            repository {
+                kind       = &quot;doublestar&quot;
+                decoration = &quot;repoExcludes&quot;
+                pattern    = &quot;nginx-*&quot;
+            }
+        }
+    }
+
+    trigger {
+        settings {
+            cron = &quot;0 0 0 * * *&quot;
+        }
+    }
+}
+</code></pre></div>
+
+<h2 id="argument-reference">Argument Reference<a class="headerlink" href="#argument-reference" title="Permanent link">&para;</a></h2>
+<p>The following arguments are supported:</p>
+<ul>
+<li>
+<p><code>algorithm</code> - (Optional) Algorithm used to aggregate rules. Defaults to <code>"or"</code>.</p>
+</li>
+<li>
+<p><code>scope</code> - (Required) Describes the (project) scope of this retention policy.</p>
+</li>
+<li>
+<p><code>rule</code> - (Required) List of retention rules that compose the policy.</p>
+</li>
+<li>
+<p><code>trigger</code> - (Required) Defines a schedule with a cron rule.</p>
+</li>
+</ul>
+<h2 id="nested-blocks">Nested Blocks<a class="headerlink" href="#nested-blocks" title="Permanent link">&para;</a></h2>
+<h3 id="scope">scope<a class="headerlink" href="#scope" title="Permanent link">&para;</a></h3>
+<h4 id="arguments">Arguments<a class="headerlink" href="#arguments" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><code>level</code> - (Optional) Defines the level the scope applies to. Defaults to <code>"project"</code>.</p>
+</li>
+<li>
+<p><code>ref</code> - (Required) Reference id (usually project id) the retention policy refers to.</p>
+</li>
+</ul>
+<h3 id="rule">rule<a class="headerlink" href="#rule" title="Permanent link">&para;</a></h3>
+<h4 id="arguments_1">Arguments<a class="headerlink" href="#arguments_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><code>disabled</code> - (Optional) Specifies if the rule should be taken in account or not (ie disabled). Defaults to <code>false</code>.</p>
+</li>
+<li>
+<p><code>action</code> - (Optional) Specifies the action to do if set of rules is matched. Defaults to <code>"retain"</code>.</p>
+</li>
+<li>
+<p><code>template</code> - (Required) kind of rules among the following:</p>
+</li>
+<li>
+<p><code>latestPushedK</code>: (retain) the most recently pushed # artifacts</p>
+</li>
+<li>
+<p><code>latestPulledN</code>: (retain) the most recently pulled # artifacts</p>
+</li>
+<li>
+<p><code>nDaysSinceLastPush</code>: (retain) the artifacts pushed with the last # days</p>
+</li>
+<li>
+<p><code>nDaysSinceLastPull</code>: (retain) the artifacts pulled with the last # days</p>
+</li>
+<li>
+<p><code>always</code>: (retain) always</p>
+</li>
+<li>
+<p><code>params</code> - (Optional) Map of params for the kind of rule (number of days or artifacts associated to the rule template). Defaults to empty map.</p>
+</li>
+</ul>
+<p>Note that multiple key-values can be specified instead of only the one matching the template. The other ones would be disabled but recorded as default choice to the associated template within the UI combo-box.</p>
+<ul>
+<li>
+<p><code>tag_selectors</code> - (Required) Describes the image tags on which to apply the rule.</p>
+</li>
+<li>
+<p><code>scope_selectors</code> - (Required) Describes the image name(s) on which to apply the rule.</p>
+</li>
+</ul>
+<h4 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><code>id</code> - The id of the rule (currently not used and set to <code>0</code> whatever the number of rules).</p>
+</li>
+<li>
+<p><code>priority</code> - A priority tag to know in which order the set of rules should b performed (currently not used and set to <code>0</code>).</p>
+</li>
+</ul>
+<h3 id="tag_selectors"><code>tag_selectors</code><a class="headerlink" href="#tag_selectors" title="Permanent link">&para;</a></h3>
+<h4 id="arguments_2">Arguments<a class="headerlink" href="#arguments_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><code>kind</code> - (Optional) The kind of tag selector. Defaults to <code>doublestar</code>.</p>
+</li>
+<li>
+<p><code>extras</code> - (Optional) Describes extra info for tag selector as a json encoded string, supports mainly the following key value: <code>untagged: (false|true)</code> to match or not the untagged artifacts in the rule. Defaults to <code>""</code>.</p>
+</li>
+<li>
+<p><code>decoration</code> - (Required) Specifies if the pattern should be matched (<code>"matches"</code>) or excluded (<code>"excludes"</code>).</p>
+</li>
+<li>
+<p><code>pattern</code> - (Required) Describes the pattern that should match (or exclude) image tags</p>
+</li>
+</ul>
+<h3 id="scope_selectors"><code>scope_selectors</code><a class="headerlink" href="#scope_selectors" title="Permanent link">&para;</a></h3>
+<h4 id="arguments_3">Arguments<a class="headerlink" href="#arguments_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><code>kind</code> - (Optional) The kind of scope selector. Defaults to <code>doublestar</code>.</p>
+</li>
+<li>
+<p><code>extras</code> - (Optional) Describes extra info for scope selector as a json encoded string, does not support any known key value as now. Defaults to <code>""</code>.</p>
+</li>
+<li>
+<p><code>decoration</code> - (Required) Specifies if the pattern should be matched (<code>"repoMatches"</code>) or excluded (<code>"repoExcludes"</code>).</p>
+</li>
+<li>
+<p><code>pattern</code> - (Required) Describes the pattern that should match (or exclude) image names</p>
+</li>
+</ul>
+<h3 id="trigger"><code>trigger</code><a class="headerlink" href="#trigger" title="Permanent link">&para;</a></h3>
+<h4 id="arguments_4">Arguments<a class="headerlink" href="#arguments_4" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><code>kind</code> - (Optional) The kind of trigger. Defaults to <code>Schedule</code>.</p>
+</li>
+<li>
+<p><code>settings</code> - (Required) The trigger settings.</p>
+</li>
+</ul>
+<h4 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>references</code> - Reference to an internal job responsible for applying the trigger.</li>
+</ul>
+<h3 id="settings"><code>settings</code><a class="headerlink" href="#settings" title="Permanent link">&para;</a></h3>
+<h4 id="arguments_5">Arguments<a class="headerlink" href="#arguments_5" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>cron</code> - (Optional) 6-fields cron pattern for triggering the retention policy execution by cron schedule. Defaults to <code>""</code> (which refers to a "None" Schedule).</li>
+</ul>
+<h3 id="references"><code>references</code><a class="headerlink" href="#references" title="Permanent link">&para;</a></h3>
+<h4 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>job_id</code> - Reference to the internal job id associated to the trigger.</li>
+</ul>
+<h2 id="attributes-reference">Attributes Reference<a class="headerlink" href="#attributes-reference" title="Permanent link">&para;</a></h2>
+<p>In addition to all arguments, the following attribute is exported:</p>
+<ul>
+<li><code>id</code> - The id of the retention policy.</li>
+</ul>
+<h2 id="import">Import<a class="headerlink" href="#import" title="Permanent link">&para;</a></h2>
+<p>Harbor Retention policies can be imported using the <code>harbor_retention_policy</code>, e.g.</p>
+<div class="highlight"><pre><span></span><code>terraform import harbor_retention_policy.cleanup <span class="m">2</span>
+</code></pre></div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../harbor_robot_account/" class="btn btn-neutral float-right" title="harbor_robot_account">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../harbor_replication/" class="btn btn-neutral" title="harbor_replication"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/nolte/terraform-provider-harbor/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../harbor_replication/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../harbor_robot_account/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/table.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

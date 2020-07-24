@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="https://nolte.github.io/terraform-provider-harbor/adr/0001-use-swagger-for-generate-http-client/">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Need a GoBased ApiClient for Harbor - Terraform Provider: Harbor</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../../css/table.css" rel="stylesheet" />
+  <link href="../../css/extras.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Need a GoBased ApiClient for Harbor";
+    var mkdocs_page_input_path = "adr/0001-use-swagger-for-generate-http-client.md";
+    var mkdocs_page_url = "/terraform-provider-harbor/adr/0001-use-swagger-for-generate-http-client/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Terraform Provider: Harbor</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Getting Started</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Data Sources</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../data_sources/harbor_label/">harbor_label</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../data_sources/harbor_project/">harbor_project</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../data_sources/harbor_registry/">harbor_registry</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Resources</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../resources/harbor_config_system/">harbor_config_system</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../resources/harbor_configuration/">harbor_configuration</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../resources/harbor_label/">harbor_label</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../resources/harbor_project_member/">harbor_project_member</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../resources/harbor_project/">harbor_project</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../resources/harbor_registry/">harbor_registry</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../resources/harbor_replication/">harbor_replication</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../resources/harbor_retention_policy/">harbor_retention_policy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../resources/harbor_robot_account/">harbor_robot_account</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../resources/harbor_tasks/">harbor_tasks</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../resources/harbor_usergroup/">harbor_usergroup</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Guides</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../guides/development/">Development</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../guides/kind/">Local E2E Tests</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Terraform Provider: Harbor</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Need a GoBased ApiClient for Harbor</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/nolte/terraform-provider-harbor/edit/master/docs/adr/0001-use-swagger-for-generate-http-client.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="need-a-gobased-apiclient-for-harbor">Need a GoBased ApiClient for Harbor<a class="headerlink" href="#need-a-gobased-apiclient-for-harbor" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Status: accepted</li>
+<li>Date: 2020-05-01</li>
+</ul>
+<h2 id="context-and-problem-statement">Context and Problem Statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">&para;</a></h2>
+<p>For a quick development from the Terraform Provider Functions, it makes sense to generate or use a HarborRestAPI Client.</p>
+<h2 id="considered-options">Considered Options<a class="headerlink" href="#considered-options" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#self-written">Self Written</a></li>
+<li><a href="#existing">Existing</a></li>
+<li><a href="#swagger-based">Swagger Based</a></li>
+</ul>
+<h2 id="decision-outcome">Decision Outcome<a class="headerlink" href="#decision-outcome" title="Permanent link">&para;</a></h2>
+<p>Chosen option: "Swagger Based", because this solution supports the fastes development Start without writting any boilerplate code.</p>
+<h3 id="positive-consequences">Positive Consequences<a class="headerlink" href="#positive-consequences" title="Permanent link">&para;</a></h3>
+<ul>
+<li>No Painfull HTTP Client Implementation</li>
+</ul>
+<h3 id="negative-consequences">Negative Consequences<a class="headerlink" href="#negative-consequences" title="Permanent link">&para;</a></h3>
+<ul>
+<li>the API Client Implementation dependents to the Swagger Spec Quality...</li>
+</ul>
+<h2 id="pros-and-cons-of-the-options">Pros and Cons of the Options<a class="headerlink" href="#pros-and-cons-of-the-options" title="Permanent link">&para;</a></h2>
+<h3 id="self-written">Self Written<a class="headerlink" href="#self-written" title="Permanent link">&para;</a></h3>
+<p>Using a SelfWritten Api Client like the <a href="https://github.com/BESTSELLER/terraform-harbor-provider">BESTSELLER/terraform-harbor-provider</a> implementation.</p>
+<ul>
+<li>👍, because full flexibility, for api interactions.</li>
+<li>👍, because no external dependency.</li>
+<li>👎, because it make no fun to write a API Client, with Error Handling, Models etc.</li>
+</ul>
+<h3 id="existing">Existing<a class="headerlink" href="#existing" title="Permanent link">&para;</a></h3>
+<p>Using one of the Exising projects like: <a href="https://github.com/moooofly/harbor-go-client">moooofly/harbor-go-client</a>, <a href="https://github.com/TimeBye/go-harbor">TimeBye/go-harbor</a> or <a href="https://github.com/jiankunking/harbor-go-client">jiankunking/harbor-go-client</a></p>
+<ul>
+<li>👍, because no painfull Api Code.</li>
+<li>👎, because a hard external dependency to the supported client methodes.</li>
+<li>👎, because it needs changes at all existing implementation for use the full harbor Api Sets.</li>
+</ul>
+<h3 id="swagger-based">Swagger Based<a class="headerlink" href="#swagger-based" title="Permanent link">&para;</a></h3>
+<p><a href="https://goharbor.io/docs/1.10/build-customize-contribute/configure-swagger/">Harbor Swagger</a></p>
+<ul>
+<li>👍, because no self written API Code.</li>
+<li>👍, because it support generate clients for different Harbor API Versions.</li>
+<li>👎, because depends to the SwaggerSpec Quality</li>
+</ul>
+<h4 id="swagger-missmatches">Swagger MissMatches<a class="headerlink" href="#swagger-missmatches" title="Permanent link">&para;</a></h4>
+<ul>
+<li>The Swagger missmatch will be fixed by a <a href="https://sookocheff.com/post/api/understanding-json-patch/">json-patch</a>.</li>
+<li>As base for the Client we use the Harbor V2, most of the interface are useable for v1.</li>
+</ul>
+<h2 id="links">Links <!-- optional --><a class="headerlink" href="#links" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Github Harbor Swagger Issue <a href="https://github.com/goharbor/harbor/issues/12474">#12474</a></li>
+<li><a href="https://github.com/evanphx/json-patch">evanphx/json-patch</a></li>
+<li><a href="https://sookocheff.com/post/api/understanding-json-patch/">json-patch</a></li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/nolte/terraform-provider-harbor/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/table.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="https://nolte.github.io/terraform-provider-harbor/resources/harbor_replication/">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>harbor_replication - Terraform Provider: Harbor</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../../css/table.css" rel="stylesheet" />
+  <link href="../../css/extras.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "harbor_replication";
+    var mkdocs_page_input_path = "resources/harbor_replication.md";
+    var mkdocs_page_url = "/terraform-provider-harbor/resources/harbor_replication/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Terraform Provider: Harbor</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Getting Started</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Data Sources</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../data_sources/harbor_label/">harbor_label</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../data_sources/harbor_project/">harbor_project</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../data_sources/harbor_registry/">harbor_registry</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Resources</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../harbor_config_system/">harbor_config_system</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../harbor_configuration/">harbor_configuration</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../harbor_label/">harbor_label</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../harbor_project_member/">harbor_project_member</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../harbor_project/">harbor_project</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../harbor_registry/">harbor_registry</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">harbor_replication</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#example-usage">Example Usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#argument-reference">Argument Reference</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#attributes-reference">Attributes Reference</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#import">Import</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../harbor_retention_policy/">harbor_retention_policy</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../harbor_robot_account/">harbor_robot_account</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../harbor_tasks/">harbor_tasks</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../harbor_usergroup/">harbor_usergroup</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Guides</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../guides/development/">Development</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../guides/kind/">Local E2E Tests</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Terraform Provider: Harbor</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Resources &raquo;</li>
+        
+      
+    
+    <li>harbor_replication</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/nolte/terraform-provider-harbor/edit/master/docs/resources/harbor_replication.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="resource-harbor_replication">Resource: harbor_replication<a class="headerlink" href="#resource-harbor_replication" title="Permanent link">&para;</a></h1>
+<p>Harbor Doc: <a href="https://goharbor.io/docs/2.0.0/administration/configuring-replication/">configuring-replication</a>  </p>
+<h2 id="example-usage">Example Usage<a class="headerlink" href="#example-usage" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>data &quot;harbor_project&quot; &quot;project_replica&quot; {
+  name = &quot;main&quot;
+}
+
+data &quot;harbor_registry&quot; &quot;registry_helm_hub&quot; {
+  name = &quot;helmhub&quot;
+}
+
+data &quot;harbor_registry&quot; &quot;registry_docker_hub&quot; {
+  name = &quot;dockerhub&quot;
+}
+
+resource &quot;harbor_replication&quot; &quot;pull_based_helm&quot; {
+  name                        = &quot;acc-helm-prometheus-operator-test&quot;
+  description                 = &quot;Prometheus Operator Replica&quot;
+  source_registry_id          = data.harbor_registry.registry_replica_helm_hub.id
+  source_registry_filter_name = &quot;stable/prometheus-operator&quot;
+  source_registry_filter_tag  = &quot;**&quot;
+  destination_namespace       = data.harbor_project.project_replica.name
+}
+
+resource &quot;harbor_replication_pull&quot; &quot;push_based_docker&quot; {
+  name                        = &quot;docker-push&quot;
+  description                 = &quot;Push Docker&quot;
+  destination_registry_id     = data.harbor_registry.registry_docker_hub.id
+  destination_namespace       = &quot;notexisting&quot;
+  source_registry_filter_name = &quot;${data.harbor_project.project_replica.name}/vscode-devcontainers/k8s-operator&quot;
+  source_registry_filter_tag  = &quot;**&quot;
+}
+</code></pre></div>
+
+<h2 id="argument-reference">Argument Reference<a class="headerlink" href="#argument-reference" title="Permanent link">&para;</a></h2>
+<p>The following arguments are supported:</p>
+<ul>
+<li>
+<p><code>name</code> - (Required) of the replication that will be created in harbor.</p>
+</li>
+<li>
+<p><code>description</code> - (Optional) of replication that will be displayed in harbor.</p>
+</li>
+<li>
+<p><code>source_registry_id</code> - (Optional) Used for pull the resources from the remote registry to the local Harbor.</p>
+</li>
+<li>
+<p><code>source_registry_filter_name</code> - (Optional) Filter the name of the resource. Leave empty or use '**' to match all. 'library/**' only matches resources under 'library'.</p>
+</li>
+<li>
+<p><code>source_registry_filter_tag</code> - (Optional) Filter the tag/version part of the resources. Leave empty or use '**' to match all. '1.0*' only matches the tags that starts with '1.0'.</p>
+</li>
+<li>
+<p><code>destination_namespace</code> - (Optional) Destination namespace Specify the destination namespace. If empty, the resources will be put under the same namespace as the source.</p>
+</li>
+<li>
+<p><code>destination_registry_id</code> - (Optional) The target Registry ID, used only for <code>push-based</code> replications.</p>
+</li>
+<li>
+<p><code>trigger_mode</code> - (Optional) Can be <code>manual</code>,<code>scheduled</code> and for push-based addition <code>event_based</code>, Default: <code>manual</code></p>
+</li>
+<li>
+<p><code>trigger_cron</code> - (Optional) Used cron for <code>scheduled</code> trigger mode, like <code>* * 5 * * *</code></p>
+</li>
+<li>
+<p><code>override</code> - (Optional) Specify whether to override the resources at the destination if a resource with the same name exists. Default: <code>false</code></p>
+</li>
+<li>
+<p><code>enabled</code> - (Optional) </p>
+</li>
+</ul>
+<h2 id="attributes-reference">Attributes Reference<a class="headerlink" href="#attributes-reference" title="Permanent link">&para;</a></h2>
+<p>In addition to all argument, the following attributes are exported:</p>
+<ul>
+<li><code>id</code> - The id of the registry policy with harbor.</li>
+</ul>
+<h2 id="import">Import<a class="headerlink" href="#import" title="Permanent link">&para;</a></h2>
+<p>Harbor Projects can be imported using the <code>harbor_replication</code>, e.g.</p>
+<div class="highlight"><pre><span></span><code>terraform import harbor_replication.helmhub_prometheus <span class="m">1</span>
+</code></pre></div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../harbor_retention_policy/" class="btn btn-neutral float-right" title="harbor_retention_policy">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../harbor_registry/" class="btn btn-neutral" title="harbor_registry"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/nolte/terraform-provider-harbor/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../harbor_registry/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../harbor_retention_policy/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/table.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
