@@ -23,7 +23,7 @@ jobs:
           #  harbor_path: "/api"
     steps:
       - name: Set up Go 1.x
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@bfdd3570ce990073878bf10f6b2d79082de49492 # v2.2.0
         with:
           go-version: ^1.14
         id: go
@@ -44,7 +44,7 @@ jobs:
           echo "::add-path::$(go env GOPATH)/bin"
 
       - name: Check out code into the Go module directory
-        uses: actions/checkout@v2
+        uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2.8.0
 
       - name: install golangci-lint
         run: |
@@ -55,7 +55,7 @@ jobs:
           make generate
 
       # https://github.com/engineerd/setup-kind
-      - uses: engineerd/setup-kind@v0.4.0
+      - uses: engineerd/setup-kind@4e17476a3712a9f6a6d99f9e1729b6cf7dbba86d # v0.4.0
         with:
           skipClusterCreation: true
 
