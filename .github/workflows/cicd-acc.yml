@@ -52,7 +52,9 @@ jobs:
 
       - name: install golangci-lint
         run: |
-          curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.27.0
+          curl -sSfL -o /tmp/golangci-install.sh https://raw.githubusercontent.com/golangci/golangci-lint/2691aacde61559ce53cfda05513ee7c70677ea31/install.sh
+          echo "9e99d38f3213411a1b6175e5b535c72e37c7ed42ccf251d331385a3f97b695e7  /tmp/golangci-install.sh" | sha256sum -c -
+          sh /tmp/golangci-install.sh -b $(go env GOPATH)/bin v1.27.0
 
       - name: test provider
         run: |
@@ -79,7 +81,9 @@ jobs:
 
       - name: install helm3
         run: |
-          curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+          curl -sfL -o /tmp/get-helm-3 https://raw.githubusercontent.com/helm/helm/bc0114c70841e2a05c95e53e20358fb761dbfb2e/scripts/get-helm-3
+          echo "08edc9569a7115a22fdc4ec164a653d072440ad14a8dbe51ca9b321c903c59a9  /tmp/get-helm-3" | sha256sum -c -
+          bash /tmp/get-helm-3
 
       - name: install harbor
         run: |
