@@ -7,6 +7,10 @@ on:
     tags-ignore:
       - "*.*"
   pull_request:
+
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Build
@@ -38,7 +42,9 @@ jobs:
 
       - name: install golangci-lint
         run: |
-          curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.27.0
+          curl -sSfL -o /tmp/golangci-install.sh https://raw.githubusercontent.com/golangci/golangci-lint/2691aacde61559ce53cfda05513ee7c70677ea31/install.sh
+          echo "9e99d38f3213411a1b6175e5b535c72e37c7ed42ccf251d331385a3f97b695e7  /tmp/golangci-install.sh" | sha256sum -c -
+          sh /tmp/golangci-install.sh -b $(go env GOPATH)/bin v1.27.0
 
       - name: test provider
         run: |

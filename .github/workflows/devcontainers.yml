@@ -13,6 +13,10 @@ on:
       - ".devcontainer/Dockerfile**"
       - .github/workflows/devcontainers.yml
 
+permissions:
+  contents: read
+  packages: read
+
 jobs:
   devcontainers-check:
     runs-on: ubuntu-latest
