@@ -14,7 +14,7 @@ permissions:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-26.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Set up Go 1.x
         uses: actions/setup-go@bfdd3570ce990073878bf10f6b2d79082de49492 # v2.2.0
