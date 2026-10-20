@@ -10,7 +10,7 @@ permissions:
 jobs:
   releaseBuild:
     name: ReleaseBuild
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Set up Go 1.x
         uses: actions/setup-go@bfdd3570ce990073878bf10f6b2d79082de49492 # v2.2.0
@@ -61,7 +61,7 @@ jobs:
     permissions:
       contents: write
     name: Publish the HTML Documentation
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout master
         uses: actions/checkout@50fbc622fc4ef5163becd7fab6573eac35f8462e # v1.2.0
@@ -75,7 +75,7 @@ jobs:
     permissions:
       contents: write
     name: Publish Release Artefacts
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: [releaseBuild]
     steps:
       - uses: actions/download-artifact@cbed621e49e4c01b044d60f6c80ea4ed6328b281 # v2.1.1
